@@ -40,7 +40,7 @@ sudo fdisk -l
 
 sudo mkfs -t ext4 /dev/nvme0n1p1
 
-sudo mount /dev/nvme0n1p1 /mt
+sudo mount /dev/nvme0n1p1 /mnt
 
 sudo mkswap /dev/nvme0n1p2
 
@@ -105,7 +105,7 @@ also make sure UUID is correct as they can change
 
 ```
 #Validator config
-UUID=5c24e241-239c-4aa5-baa6-fbb6fb44a847 /mt  auto nosuid,nodev,nofail 0 0
+UUID=5c24e241-239c-4aa5-baa6-fbb6fb44a847 /mnt  auto nosuid,nodev,nofail 0 0
 #ramdrive and swap
 tmpfs /mnt/ramdrive tmpfs rw,size=80G 0 0
 ```
@@ -118,7 +118,7 @@ The complete file should look like this (but with your own UUIDs):
 UUID=e6eafc79-85c3-4208-82ac-41b73d75cd31       /       ext4    errors=remount-ro       0       1
 UUID=37215cf2-244c-4f2e-98f9-6f327694fe7e       none    swap    none    0       0
 #Validator config
-UUID=5c24e241-239c-4aa5-baa6-fbb6fb44a847 /mt  auto nosuid,nodev,nofail 0 0
+UUID=5c24e241-239c-4aa5-baa6-fbb6fb44a847 /mnt  auto nosuid,nodev,nofail 0 0
 #ramdrive and swap
 tmpfs /mnt/ramdrive tmpfs rw,size=80G 0 0
 ```
@@ -131,16 +131,16 @@ sudo mount --all --verbose
 ```
 Finish making directories
 ```
-sudo mkdir -p /mt/ledger/validator-ledger
+sudo mkdir -p /mnt/ledger/validator-ledger
 
-sudo mkdir /mt/solana-accounts
+sudo mkdir /mnt/accounts
 
 sudo mkdir ~/log
 ```
 
 Edit permissions and make sure user sol is the owner for solana directories
 ```
-sudo chown -R solv:solv /mt/*
+sudo chown -R solv:solv /mnt/*
 
 sudo chown solv:solv ~/log
 ```
@@ -169,7 +169,7 @@ sh -c "$(curl -sSfL https://release.solana.com/v1.8.14/install)"
 I will ask you to map the PATH just copy and paste the below:
 
 ```
-export PATH="/home/sol/.local/share/solana/install/active_release/bin:$PATH"
+export PATH="/home/solv/.local/share/solana/install/active_release/bin:$PATH"
 ```
 You are now able to join Solana gossip which is an overarching network communication layer which all RPCs and Validators chatter in. If you see a steam of logs, and no errors then have officially connected directly to the Solana network.
 
