@@ -16,11 +16,11 @@ apt dist-upgrade
 create user sol
 
 ```
-adduser sol
+adduser solv
 
-usermod -aG sudo sol
+usermod -aG sudo solv
 
-su - sol
+su - solv
 ```
 
 Partition NVME into ~570gb (swap) and 3000gb (ledger and accounts) - for EQ1 Spec 3.8TB NVME
@@ -140,9 +140,9 @@ sudo mkdir ~/log
 
 Edit permissions and make sure user sol is the owner for solana directories
 ```
-sudo chown -R sol:sol /mt/*
+sudo chown -R solv:solv /mt/*
 
-sudo chown sol:sol ~/log
+sudo chown solv:solv ~/log
 ```
 
 Set up the firewall / ssh
@@ -264,11 +264,11 @@ save / exit (ctrl+s, ctrl+x)
 make executable
 ```
 sudo chmod +x ~/start-validator.sh
-sudo chown sol:sol start-validator.sh
+sudo chown solv:solv start-validator.sh
 ```
 Create system service - sol.service (allows Solana to run on boot, auto-restart when sys fail) 
 ```
-sudo nano /etc/systemd/system/sol.service
+sudo nano /etc/systemd/system/solv.service
 ```
 Edit this into file:
 ```
@@ -287,7 +287,7 @@ LogRateLimitIntervalSec=0
 User=sol
 Environment=PATH=/bin:/usr/bin:/home/sol/.local/share/solana/install/active_release/bin
 Environment=SOLANA_METRICS_CONFIG=host=https://metrics.solana.com:8086,db=mainnet-beta,u=mainnet-beta_write,p=password
-WorkingDirectory=/home/sol/
+WorkingDirectory=/home/solv/
 ExecStart=/home/sol/start-validator.sh
 
 [Install]
@@ -355,7 +355,7 @@ if the service did not kickstart then debug, otherwise continue to make into sys
 sudo systemctl enable --now systuner.service
 sudo systemctl status systuner.service
 sudo systemctl enable --now sol.service
-sudo systemctl status sol.service
+sudo systemctl status solv.service
 ```
 This starts the system process and the Validator should begin running. Debug if not by tailing the log and filter for error of warnings.
 ```
