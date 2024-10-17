@@ -248,7 +248,7 @@ exec solana-validator \
 --trusted-validator wWf94sVnaXHzBYrePsRUyesq6ofndocfBH6EmzdgKMS \
 --trusted-validator 7cVfgArCheMR6Cs4t6vz5rfnqd56vZq4ndaBrY5xkxXy \
 --expected-genesis-hash 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d \
---ledger /mt/ledger/validator-ledger \
+--ledger /mnt/ledger \
 --dynamic-port-range 8000-8010 \
 --private-rpc \
 --rpc-bind-address 127.0.0.1 \
@@ -256,7 +256,7 @@ exec solana-validator \
 --expected-shred-version 13490 \
 --wal-recovery-mode skip_any_corrupted_record \
 --log ~/solana-validator.log \
---accounts /mnt/ramdrive/solana-accounts \
+--accounts /mnt/accounts \
 --limit-ledger-size 50000000 \
 ```
 save / exit (ctrl+s, ctrl+x)
@@ -285,10 +285,10 @@ RestartSec=1
 LimitNOFILE=1000000
 LogRateLimitIntervalSec=0
 User=sol
-Environment=PATH=/bin:/usr/bin:/home/sol/.local/share/solana/install/active_release/bin
+Environment=PATH=/bin:/usr/bin:/home/soln/.local/share/solana/install/active_release/bin
 Environment=SOLANA_METRICS_CONFIG=host=https://metrics.solana.com:8086,db=mainnet-beta,u=mainnet-beta_write,p=password
 WorkingDirectory=/home/solv/
-ExecStart=/home/sol/start-validator.sh
+ExecStart=/home/soln/start-validator.sh
 
 [Install]
 WantedBy=multi-user.target
@@ -309,7 +309,7 @@ Type=simple
 Restart=on-failure
 RestartSec=1
 LogRateLimitIntervalSec=0
-ExecStart=/home/sol/.local/share/solana/install/active_release/bin/solana-sys-tuner --user sol
+ExecStart=/home/solv/.local/share/solana/install/active_release/bin/solana-sys-tuner --user sol
 [Install]
 WantedBy=multi-user.target
 ```
@@ -323,13 +323,13 @@ sudo nano /etc/logrotate.d/solana
 ```
 Edit this into file:
 ```
-/home/sol/log/solana-validator.log {
-  su sol sol
+/home/solv/log/solana-validator.log {
+  su solv solv
   daily
   rotate 3
   missingok
   postrotate
-    systemctl kill -s USR1 sol.service
+    systemctl kill -s USR1 solv.service
   endscript
 }
 ```
@@ -354,7 +354,7 @@ if the service did not kickstart then debug, otherwise continue to make into sys
 ```
 sudo systemctl enable --now systuner.service
 sudo systemctl status systuner.service
-sudo systemctl enable --now sol.service
+sudo systemctl enable --now solv.service
 sudo systemctl status solv.service
 ```
 This starts the system process and the Validator should begin running. Debug if not by tailing the log and filter for error of warnings.
