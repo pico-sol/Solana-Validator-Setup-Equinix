@@ -112,9 +112,9 @@ also make sure UUID is correct as they can change
 
 ```
 #Validator config
-UUID=5c24e241-239c-4aa5-baa6-fbb6fb44a847 /mnt  auto nosuid,nodev,nofail 0 0
-#ramdrive and swap
-tmpfs /mnt/ramdrive tmpfs rw,size=80G 0 0
+/dev/nvme0n1p1        /mnt/ledger     auto nosuid,nodev,nofail 0 0
+/dev/nvme1n1        /mnt/accounts     auto nosuid,nodev,nofail 0 0
+/dev/nvme0n1p2  none swap sw 0 0
 ```
 save / exit  
 
