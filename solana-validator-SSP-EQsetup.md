@@ -90,9 +90,10 @@ lsblk -f
 ```
 Copy the section that looks similar to the below nvme0n1 partition tree and past it into a notepad (or VScode, etc) so that you can copy/past into fstab properly. We just need the UUID's so in the example below copy "5c24e241-239c-4aa5-baa6-fbb6fb44a847" and "37215cf2-244c-4f2e-98f9-6f327694fe7e" and note which partition each belongs to (/mt and swap respectively). Your UUIDs will be different!
 ```
-nvme0n1
-├─nvme0n1p1 ext4         5c24e241-239c-4aa5-baa6-fbb6fb44a847    2.8T     0% /mt
-└─nvme1n1p2 swap   1     37215cf2-244c-4f2e-98f9-6f327694fe7e                [SWAP]
+nvme0n1                                                                            
+├─nvme0n1p1 ext4   1.0         5d741d6b-b8dd-447a-ba0c-7eaf1d7aed03    1.7T     0% /mnt/ledger
+└─nvme0n1p2 swap   1           07e6fc18-de0f-49ec-9511-ef36de03071d                [SWAP]
+nvme1n1     ext4   1.0         66f9585c-75a6-4734-a893-0fbcf5a3f9dd  869.2G     0% /mnt/accounts
 ```
 These UUID above need to be edited into the fstab config below
 ```
