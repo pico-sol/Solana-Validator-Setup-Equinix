@@ -31,9 +31,9 @@ Enter the "n" then hit enter
 Enter the "1" then hit enter...and so on
 ```
 sudo gdisk /dev/nvme0n1
-n, 1, enter (2048 default first sector), +3000G, enter (8300 default),
-n, 2, enter (default first available sector), enter (max sector available),
-8200, w, y
+n, 2, enter (2048 default first sector), +8G, 8200,
+n, 1, enter (default first available sector), enter (max sector available), enter (8300 default),
+w, y
 ```
 
 Now make filesystems, directories, delete and make new swap, etc.
