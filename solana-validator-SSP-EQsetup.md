@@ -23,7 +23,7 @@ usermod -aG sudo solv
 su - solv
 ```
 
-Partition NVME into ~570gb (swap) and 3000gb (ledger and accounts) - for EQ1 Spec 3.8TB NVME
+Partition NVME1 into ledger and swap (8GB) - for 1TB NVME1
 
 Adding new process using GPT partition with gdisk for larger filessytems.
 
@@ -41,8 +41,10 @@ Now make filesystems, directories, delete and make new swap, etc.
 sudo fdisk -l 
 
 sudo mkfs -t ext4 /dev/nvme0n1p1
+sudo mkfs -t ext4 /dev/nvme1n1
 
-sudo mount /dev/nvme0n1p1 /mnt
+sudo mount /dev/nvme0n1p1 /mnt/ledger
+sudo mount /dev/nvme1n1 /mnt/accounts
 
 sudo mkswap /dev/nvme0n1p2
 
