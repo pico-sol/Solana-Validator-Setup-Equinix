@@ -105,16 +105,15 @@ UUID=4b8f8a7b-8b8f-4984-a341-5770f8b365a1       none    swap    none    0       
 ```
 To be updated becoming
 ```
-UUID=37215cf2-244c-4f2e-98f9-6f327694fe7e       none    swap    none    0       0
+#Validator config
+/dev/nvme0n1p2  none swap sw 0 0
 ```
   Now **append these lines under whatever current UUIDs are listed** as the ones already in the file are boot/OS related.
 also make sure UUID is correct as they can change
 
 ```
-#Validator config
 /dev/nvme0n1p1        /mnt/ledger     auto nosuid,nodev,nofail 0 0
 /dev/nvme1n1        /mnt/accounts     auto nosuid,nodev,nofail 0 0
-/dev/nvme0n1p2  none swap sw 0 0
 ```
 save / exit  
 
@@ -123,11 +122,10 @@ save / exit
 The complete file should look like this (but with your own UUIDs):
 ```
 UUID=e6eafc79-85c3-4208-82ac-41b73d75cd31       /       ext4    errors=remount-ro       0       1
-UUID=37215cf2-244c-4f2e-98f9-6f327694fe7e       none    swap    none    0       0
 #Validator config
+/dev/nvme0n1p2  none swap sw 0 0
 /dev/nvme0n1p1        /mnt/ledger     auto nosuid,nodev,nofail 0 0
 /dev/nvme1n1        /mnt/accounts     auto nosuid,nodev,nofail 0 0
-/dev/nvme0n1p2  none swap sw 0 0
 ```
 
 Set up the firewall / ssh
