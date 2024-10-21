@@ -31,7 +31,9 @@ Enter the "n" then hit enter
 Enter the "1" then hit enter...and so on
 ```
 sudo gdisk /dev/nvme0n1
-n, 1, enter (2048 default first sector), +3000G, enter (8300 default), n, 2, enter (default first available sector), enter (max sector available), 8200, w, y
+n, 1, enter (2048 default first sector), +3000G, enter (8300 default),
+n, 2, enter (default first available sector), enter (max sector available),
+8200, w, y
 ```
 
 Now make filesystems, directories, delete and make new swap, etc.
@@ -59,7 +61,7 @@ sudo swapoff /dev/sda2
 ```
 Next is editing the swappiness to 10 and turning our new swap partition on.
 ```
-echo 'vm.swappiness=10' | sudo tee --append /etc/sysctl.conf > /dev/null
+echo 'vm.swappiness=1' | sudo tee --append /etc/sysctl.conf > /dev/null
 
 sudo sysctl -p
 
