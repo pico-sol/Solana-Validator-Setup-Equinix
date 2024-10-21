@@ -125,31 +125,9 @@ The complete file should look like this (but with your own UUIDs):
 UUID=e6eafc79-85c3-4208-82ac-41b73d75cd31       /       ext4    errors=remount-ro       0       1
 UUID=37215cf2-244c-4f2e-98f9-6f327694fe7e       none    swap    none    0       0
 #Validator config
-UUID=5c24e241-239c-4aa5-baa6-fbb6fb44a847 /mnt  auto nosuid,nodev,nofail 0 0
-#ramdrive and swap
-tmpfs /mnt/ramdrive tmpfs rw,size=80G 0 0
-```
-
-Create the ramdrive folder and mount everything.
-```
-sudo mkdir /mnt/ramdrive
-
-sudo mount --all --verbose
-```
-Finish making directories
-```
-sudo mkdir -p /mnt/ledger/validator-ledger
-
-sudo mkdir /mnt/accounts
-
-sudo mkdir ~/log
-```
-
-Edit permissions and make sure user sol is the owner for solana directories
-```
-sudo chown -R solv:solv /mnt/*
-
-sudo chown solv:solv ~/log
+/dev/nvme0n1p1        /mnt/ledger     auto nosuid,nodev,nofail 0 0
+/dev/nvme1n1        /mnt/accounts     auto nosuid,nodev,nofail 0 0
+/dev/nvme0n1p2  none swap sw 0 0
 ```
 
 Set up the firewall / ssh
@@ -171,7 +149,7 @@ sudo ufw allow 8000:8010/udp
 Install the Solana CLI! Don't forget to check for current version (1.8.14 as of 2/4/2022)
 
 ```
-sh -c "$(curl -sSfL https://release.solana.com/v1.8.14/install)"
+sh -c "$(curl -sSfL https://release.solana.com/v1.18.25/install)"
 ```
 I will ask you to map the PATH just copy and paste the below:
 
