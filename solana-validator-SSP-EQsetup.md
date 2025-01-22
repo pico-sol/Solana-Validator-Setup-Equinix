@@ -321,7 +321,7 @@ sudo nano /etc/logrotate.d/solana
 ```
 Edit this into file:
 ```
-/home/solv/log/solana-validator.log {
+/home/solv/solana-validator.log {
   su solv solv
   daily
   rotate 3
