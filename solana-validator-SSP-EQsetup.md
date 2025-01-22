@@ -34,6 +34,7 @@ chmod 600 /home/solv/.ssh/authorized_keys
 ```
 
 **********  swap is deprecated  **********
+
 Partition NVME1 into ledger and swap (8GB) - for 1TB NVME1
 
 Adding new process using GPT partition with gdisk for larger filessytems.
