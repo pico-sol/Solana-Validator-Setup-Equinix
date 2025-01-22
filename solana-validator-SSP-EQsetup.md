@@ -344,7 +344,7 @@ bash ~/start-validator.sh
 
 ctrl + b, d (to detach from tmux)
 
-sudo tail -f ~/log/solana-validator.log
+sudo tail -f ~/solana-validator.log
 
 ctrl+c
 ```
