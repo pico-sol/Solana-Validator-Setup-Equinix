@@ -56,10 +56,12 @@ sudo fdisk -l
 sudo mkfs -t ext4 /dev/nvme0n1p1
 sudo mkdir -p /mnt/ledger
 sudo mount /dev/nvme0n1p1 /mnt/ledger
+sudo chown -R solv:solv /mnt/ledger
 
 sudo mkfs -t ext4 /dev/nvme1n1
 sudo mkdir -p /mnt/accounts
 sudo mount /dev/nvme1n1 /mnt/accounts
+sudo chown -R solv:solv /mnt/accounts
 
 sudo mkswap /dev/nvme0n1p2
 
