@@ -13,7 +13,7 @@ apt update
 apt upgrade
 apt dist-upgrade
 ```
-create user sol
+create user solv
 
 ```
 adduser solv
@@ -21,6 +21,16 @@ adduser solv
 usermod -aG sudo solv
 
 su - solv
+```
+copy authorized_keys and set permission
+```
+mkdir /home/solv/.ssh
+cp /***/.ssh/authorized_keys /home/solv/.ssh
+sudo chown -R solv:solv /home/solv/.ssh
+chmod 700 /home/solv/.ssh
+
+sudo chown solv:solv /home/solv/.ssh/authorized_keys
+chmod 600 /home/solv/.ssh/authorized_keys
 ```
 
 Partition NVME1 into ledger and swap (8GB) - for 1TB NVME1
