@@ -403,7 +403,7 @@ Install a monitoring stack of your choice. There are many great public guides. F
 
 Join the Solana Discord channel for validator support! 
 
-セキュリティ設定
+【セキュリティ設定】
 /etc/ssh/sshd_configファイルを編集し、パスワード認証、rootログイン、チャレンジレスポンス認証を無効化します
 ```
 ...
@@ -412,6 +412,18 @@ PermitRootLogin no
 ChallengeResponseAuthentication no
 ...
 ```
+新しい設定をリロード
 ```
 sudo systemctl reload sshd
+```
+fail2banで何度も認証失敗するIPアドレスからのアクセスを排除
+```
+sudo apt install fail2ban
+```
+ファイアウオール設定
+```
+sudo ufw allow 22/tcp
+sudo ufw allow 8000:8020/udp
+sudo ufw allow 8899:8900/udp
+sudo ufw enable
 ```
