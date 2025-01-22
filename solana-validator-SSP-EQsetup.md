@@ -286,7 +286,7 @@ User=sol
 Environment=PATH=/bin:/usr/bin:/home/soln/.local/share/solana/install/active_release/bin
 Environment=SOLANA_METRICS_CONFIG=host=https://metrics.solana.com:8086,db=mainnet-beta,u=mainnet-beta_write,p=password
 WorkingDirectory=/home/solv/
-ExecStart=/home/soln/start-validator.sh
+ExecStart=/home/solv/start-validator.sh
 
 [Install]
 WantedBy=multi-user.target
