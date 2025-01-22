@@ -402,3 +402,16 @@ solana validator-info publish "SomethingCreative" -n SomethingCreative -w "https
 Install a monitoring stack of your choice. There are many great public guides. For example, look up Ubuntu `TIG` motoring stack how to guide. TIG stand for Telegraf, InfluxDB, Grafana.
 
 Join the Solana Discord channel for validator support! 
+
+セキュリティ設定
+/etc/ssh/sshd_configファイルを編集し、パスワード認証、rootログイン、チャレンジレスポンス認証を無効化します
+```
+...
+PasswordAuthentication no
+PermitRootLogin no 
+ChallengeResponseAuthentication no
+...
+```
+```
+sudo systemctl reload sshd
+```
