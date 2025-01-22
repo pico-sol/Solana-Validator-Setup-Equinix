@@ -33,17 +33,17 @@ sudo chown solv:solv /home/solv/.ssh/authorized_keys
 chmod 600 /home/solv/.ssh/authorized_keys
 ```
 
-Partition NVME1 into ledger and swap (8GB) - for 1TB NVME1
+~~Partition NVME1 into ledger and swap (8GB) - for 1TB NVME1
 
 Adding new process using GPT partition with gdisk for larger filessytems.
 
 Enter the "n" then hit enter
-Enter the "1" then hit enter...and so on
+Enter the "1" then hit enter...and so on~~
 ```
-sudo gdisk /dev/nvme0n1
+~~sudo gdisk /dev/nvme0n1
 n, 2, enter (2048 default first sector), +8G, 8200,
 n, 1, enter (default first available sector), enter (max sector available), enter (8300 default),
-w, y
+w, y~~
 ```
 
 Now make filesystems, directories, delete and make new swap, etc.
