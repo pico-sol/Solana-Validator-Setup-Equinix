@@ -23,7 +23,7 @@ usermod -aG sudo solv
 su - solv
 ```
 
-#ssh公開鍵authorized_keys設定とパーミッション設定
+# ssh公開鍵authorized_keys設定とパーミッション設定
 ```
 mkdir /home/solv/.ssh
 cp ***/.ssh/authorized_keys /home/solv/.ssh  # ***は/root, /home/ubuntuなどサーバー初期設定による
@@ -34,7 +34,7 @@ sudo chown solv:solv /home/solv/.ssh/authorized_keys
 chmod 600 /home/solv/.ssh/authorized_keys
 ```
 
-#パーティション設定
+# パーティション設定
 **********  swap は非推奨とされているのでこのセクションは現在使用していません  **********
 
 Partition NVME1 into ledger and swap (8GB) - for 1TB NVME1
@@ -48,7 +48,7 @@ n, 1, enter (default first available sector), enter (max sector available), ente
 w, y
 ```
 
-#ファイルシステム・ディレクトリ作成等
+# ファイルシステム・ディレクトリ作成等
 ```
 sudo fdisk -l 
 
