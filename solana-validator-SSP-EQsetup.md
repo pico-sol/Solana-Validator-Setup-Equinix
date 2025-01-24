@@ -410,7 +410,7 @@ Install a monitoring stack of your choice. There are many great public guides. F
 
 Join the Solana Discord channel for validator support! 
 
-【セキュリティ設定】
+# セキュリティ設定
 /etc/ssh/sshd_configファイルを編集し、パスワード認証、rootログイン、チャレンジレスポンス認証を無効化します
 ```
 ...
@@ -434,3 +434,11 @@ sudo ufw allow 8000:8020/udp
 sudo ufw allow 8899:8900/udp
 sudo ufw enable
 ```
+sshキー作成
+```
+ssh-keygen -t rsa -b 409
+# ここで作成したsshの公開鍵を別ノードの /home/solv/.ssh/authorized_keys にコピー
+git clone https://github.com/pico-sol/sh.git
+chmod +x sh/*
+```
+
