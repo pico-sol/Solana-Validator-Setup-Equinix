@@ -42,10 +42,10 @@ Adding new process using GPT partition with gdisk for larger filessytems.
 Enter the "n" then hit enter
 Enter the "1" then hit enter...and so on
 ```
-sudo gdisk /dev/nvme0n1
-n, 2, enter (2048 default first sector), +8G, 8200,
-n, 1, enter (default first available sector), enter (max sector available), enter (8300 default),
-w, y
+#sudo gdisk /dev/nvme0n1
+#n, 2, enter (2048 default first sector), +8G, 8200,
+#n, 1, enter (default first available sector), enter (max sector available), enter (8300 default),
+#w, y
 ```
 
 # ファイルシステム・ディレクトリ作成等
@@ -67,12 +67,12 @@ sudo mkdir -p /mnt/snapshots
 sudo mount /dev/nvme1n1 /mnt/snapshots
 sudo chown -R solv:solv /mnt/snapshots
 
-sudo mkswap /dev/nvme0n1p2  #現在は使用しない
+#sudo mkswap /dev/nvme0n1p2  #現在は使用しない
 
 ```
 Discover the old swap directory, turn it off, and turn it on the new one.
 ```
-sudo swapon --show
+#sudo swapon --show
 ```
 You need to look at the directory and pick the correct /dev/sd*
 
@@ -80,10 +80,11 @@ It could be /dev/sdb2 or /dev/sdc2 so edit the next line below to the proper sd*
 
 It will almost always be the one showig 1.9GB of swap size
 ```
-sudo swapoff /dev/sda2
+#sudo swapoff /dev/sda2
 ```
 Next is editing the swappiness to 10 and turning our new swap partition on.
 ```
+#swappiness=0の方がいいかもしれない
 echo 'vm.swappiness=1' | sudo tee --append /etc/sysctl.conf > /dev/null
 
 sudo sysctl -p
