@@ -23,7 +23,7 @@ usermod -aG sudo solv
 su - solv
 ```
 
-ssh公開鍵authorized_keys設定とパーミッション設定
+#ssh公開鍵authorized_keys設定とパーミッション設定
 ```
 mkdir /home/solv/.ssh
 cp ***/.ssh/authorized_keys /home/solv/.ssh  # ***は/root, /home/ubuntuなどサーバー初期設定による
@@ -35,13 +35,10 @@ chmod 600 /home/solv/.ssh/authorized_keys
 ```
 
 #パーティション設定
-
 **********  swap は非推奨とされているのでこのセクションは現在使用していません  **********
 
 Partition NVME1 into ledger and swap (8GB) - for 1TB NVME1
-
 Adding new process using GPT partition with gdisk for larger filessytems.
-
 Enter the "n" then hit enter
 Enter the "1" then hit enter...and so on
 ```
@@ -50,7 +47,6 @@ n, 2, enter (2048 default first sector), +8G, 8200,
 n, 1, enter (default first available sector), enter (max sector available), enter (8300 default),
 w, y
 ```
-**********  swap is deprecated  **********
 
 #ファイルシステム・ディレクトリ作成等
 ```
