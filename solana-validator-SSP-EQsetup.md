@@ -1,19 +1,19 @@
-# Solana Validator Node configuration for Equinix Metal
+# Solana Validator Node 設定
 
 Make sure and check out the README document.
 
-IMPORTANT: This guide is specifically for Equinix Machines from the Solana Reserve pool accessed through the Solana Foundation Server Program. https://solana.foundation/server-program
+IMPORTANT: pico-solの個人的なサーバー設定備忘録です。参考にしていただくのは構いませんが、動作の不具合等あっても責任は取れません
 
-You must be running Ubuntu 20.04
+Ubuntu 22.04
 
-So you have your shiny new beast of a server. Let's make it a Solana Validatoooooooor.
-First things first - OS security updates
+# OS セキュリティ・アップデート
 ```
 apt update
 apt upgrade
 apt dist-upgrade
 ```
-create user solv
+
+# ユーザーsolv作成
 
 ```
 adduser solv
@@ -22,10 +22,11 @@ usermod -aG sudo solv
 
 su - solv
 ```
-copy authorized_keys and set permission
+
+ssh公開鍵authorized_keys設定とパーミッション設定
 ```
 mkdir /home/solv/.ssh
-cp /***/.ssh/authorized_keys /home/solv/.ssh
+cp ***/.ssh/authorized_keys /home/solv/.ssh  # ***は/root, /home/ubuntuなどサーバー初期設定による
 sudo chown -R solv:solv /home/solv/.ssh
 chmod 700 /home/solv/.ssh
 
@@ -33,7 +34,9 @@ sudo chown solv:solv /home/solv/.ssh/authorized_keys
 chmod 600 /home/solv/.ssh/authorized_keys
 ```
 
-**********  swap is deprecated  **********
+#パーティション設定
+
+**********  swap は非推奨とされているのでこのセクションは現在使用していません  **********
 
 Partition NVME1 into ledger and swap (8GB) - for 1TB NVME1
 
@@ -49,21 +52,26 @@ w, y
 ```
 **********  swap is deprecated  **********
 
-Now make filesystems, directories, delete and make new swap, etc.
+#ファイルシステム・ディレクトリ作成等
 ```
 sudo fdisk -l 
 
-sudo mkfs -t ext4 /dev/nvme0n1p1
+sudo mkfs -t ext4 /dev/nvme0n1p1  #nvme*n1の番号はサーバー初期設定により変更
 sudo mkdir -p /mnt/ledger
 sudo mount /dev/nvme0n1p1 /mnt/ledger
 sudo chown -R solv:solv /mnt/ledger
 
-sudo mkfs -t ext4 /dev/nvme1n1
+sudo mkfs -t ext4 /dev/nvme2n1  #nvme*n1の番号はサーバー初期設定により変更
 sudo mkdir -p /mnt/accounts
 sudo mount /dev/nvme1n1 /mnt/accounts
 sudo chown -R solv:solv /mnt/accounts
 
-sudo mkswap /dev/nvme0n1p2
+sudo mkfs -t ext4 /dev/nvme3n1  #nvme*n1の番号はサーバー初期設定により変更
+sudo mkdir -p /mnt/snapshots
+sudo mount /dev/nvme1n1 /mnt/snapshots
+sudo chown -R solv:solv /mnt/snapshots
+
+sudo mkswap /dev/nvme0n1p2  #現在は使用しない
 
 ```
 Discover the old swap directory, turn it off, and turn it on the new one.
