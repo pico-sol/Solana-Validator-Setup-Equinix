@@ -33,6 +33,7 @@ chmod 700 /home/solv/.ssh
 sudo chown solv:solv /home/solv/.ssh/authorized_keys
 chmod 600 /home/solv/.ssh/authorized_keys
 ```
+ここでユーザーsolvでログインし直す
 
 # パーティション設定
 **********  swap は非推奨とされているのでこのセクションは現在使用していません  **********
@@ -442,3 +443,41 @@ git clone https://github.com/pico-sol/sh.git
 chmod +x sh/*
 ```
 
+# CPUブースト
+パフォーマンスモード設定
+```
+for cpu in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+  echo performance | sudo tee $cpu
+done
+```
+
+永続化
+```
+sudo nano /etc/systemd/system/cpufreq.service
+```
+```
+[Unit]
+Description=Set CPU governor to performance
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c 'for cpu in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo performance > $cpu; done'
+
+[Install]
+WantedBy=multi-user.target
+```
+設定を有効化
+```
+sudo systemctl daemon-reload
+sudo systemctl enable cpufreq.service
+sudo systemctl start cpufreq.service
+```
+再確認
+```
+cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+```
+最大クロック速度の確認
+```
+lscpu | grep "MHz"
+```
