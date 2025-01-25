@@ -161,8 +161,11 @@ sudo ufw allow ssh
 Open ports in UFW firewall for Solana Validator operation:
 ```
 sudo ufw allow 53 
-
-sudo ufw allow 8000:8010/udp
+sudo ufw allow 8000:8020/tcp
+sudo ufw allow 8000:8020/udp
+sudo ufw allow 8899:8900/tcp
+sudo ufw allow 8899:8900/udp
+sudo ufw allow 4818/udp
 ```
 
 Install the Solana CLI! Don't forget to check for current version (1.8.14 as of 2/4/2022)
