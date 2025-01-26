@@ -291,7 +291,7 @@ Restart=on-failure
 RestartSec=1
 LimitNOFILE=1000000
 LogRateLimitIntervalSec=0
-User=sol
+User=solv
 Environment=PATH=/bin:/usr/bin:/home/soln/.local/share/solana/install/active_release/bin
 Environment=SOLANA_METRICS_CONFIG=host=https://metrics.solana.com:8086,db=mainnet-beta,u=mainnet-beta_write,p=password
 WorkingDirectory=/home/solv/
